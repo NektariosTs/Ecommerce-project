@@ -4,10 +4,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Entity
 @Table(name = "state")
-//@Getter
-//@Setter
+
 public class State {
 
     @Id
@@ -53,6 +53,8 @@ public class State {
     public void setCountry(Country country) {
         this.country = country;
     }
+
+
 
     @Override
     public String toString() {
