@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+
 @Entity
 @Table(name = "orders")
 @Getter
@@ -45,99 +46,113 @@ public class Order {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private Set<OrderItem> orderItems = new HashSet<>();
 
-    public Order() {
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
-    }
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "shipping_address_id", referencedColumnName = "id")
+    private Address shippingAddress;
 
-    public Order(Long id, String orderTrackingNumber, int totalQuantity, BigDecimal totalPrice,
-                 String status, Date dateCreated, Date lastUpdated, Set<OrderItem> orderItems) {
-        this.id = id;
-        this.orderTrackingNumber = orderTrackingNumber;
-        this.totalQuantity = totalQuantity;
-        this.totalPrice = totalPrice;
-        this.status = status;
-        this.dateCreated = dateCreated;
-        this.lastUpdated = lastUpdated;
-        this.orderItems = orderItems;
-    }
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "billing_address_id", referencedColumnName = "id")
+    private Address billingAddress;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getOrderTrackingNumber() {
-        return orderTrackingNumber;
-    }
-
-    public void setOrderTrackingNumber(String orderTrackingNumber) {
-        this.orderTrackingNumber = orderTrackingNumber;
-    }
-
-    public int getTotalQuantity() {
-        return totalQuantity;
-    }
-
-    public void setTotalQuantity(int totalQuantity) {
-        this.totalQuantity = totalQuantity;
-    }
-
-    public BigDecimal getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(BigDecimal totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Date getDateCreated() {
-        return dateCreated;
-    }
-
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
-    }
-
-    public Date getLastUpdated() {
-        return lastUpdated;
-    }
-
-    public void setLastUpdated(Date lastUpdated) {
-        this.lastUpdated = lastUpdated;
-    }
-
-    public Set<OrderItem> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setOrderItems(Set<OrderItem> orderItems) {
-        this.orderItems = orderItems;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", orderTrackingNumber='" + orderTrackingNumber + '\'' +
-                ", totalQuantity=" + totalQuantity +
-                ", totalPrice=" + totalPrice +
-                ", status='" + status + '\'' +
-                ", dateCreated=" + dateCreated +
-                ", lastUpdated=" + lastUpdated +
-                ", orderItems=" + orderItems +
-                '}';
-    }
+//    public Order() {
+//
+//    }
+//
+//    public Order(Long id, String orderTrackingNumber, int totalQuantity, BigDecimal totalPrice,
+//                 String status, Date dateCreated, Date lastUpdated, Set<OrderItem> orderItems) {
+//        this.id = id;
+//        this.orderTrackingNumber = orderTrackingNumber;
+//        this.totalQuantity = totalQuantity;
+//        this.totalPrice = totalPrice;
+//        this.status = status;
+//        this.dateCreated = dateCreated;
+//        this.lastUpdated = lastUpdated;
+//        this.orderItems = orderItems;
+//    }
+//
+//
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+//
+//    public String getOrderTrackingNumber() {
+//        return orderTrackingNumber;
+//    }
+//
+//    public void setOrderTrackingNumber(String orderTrackingNumber) {
+//        this.orderTrackingNumber = orderTrackingNumber;
+//    }
+//
+//    public int getTotalQuantity() {
+//        return totalQuantity;
+//    }
+//
+//    public void setTotalQuantity(int totalQuantity) {
+//        this.totalQuantity = totalQuantity;
+//    }
+//
+//    public BigDecimal getTotalPrice() {
+//        return totalPrice;
+//    }
+//
+//    public void setTotalPrice(BigDecimal totalPrice) {
+//        this.totalPrice = totalPrice;
+//    }
+//
+//    public String getStatus() {
+//        return status;
+//    }
+//
+//    public void setStatus(String status) {
+//        this.status = status;
+//    }
+//
+//    public Date getDateCreated() {
+//        return dateCreated;
+//    }
+//
+//    public void setDateCreated(Date dateCreated) {
+//        this.dateCreated = dateCreated;
+//    }
+//
+//    public Date getLastUpdated() {
+//        return lastUpdated;
+//    }
+//
+//    public void setLastUpdated(Date lastUpdated) {
+//        this.lastUpdated = lastUpdated;
+//    }
+//
+//    public Set<OrderItem> getOrderItems() {
+//        return orderItems;
+//    }
+//
+//    public void setOrderItems(Set<OrderItem> orderItems) {
+//        this.orderItems = orderItems;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "Order{" +
+//                "id=" + id +
+//                ", orderTrackingNumber='" + orderTrackingNumber + '\'' +
+//                ", totalQuantity=" + totalQuantity +
+//                ", totalPrice=" + totalPrice +
+//                ", status='" + status + '\'' +
+//                ", dateCreated=" + dateCreated +
+//                ", lastUpdated=" + lastUpdated +
+//                ", orderItems=" + orderItems +
+//                '}';
+//    }
 
     public void add(OrderItem item) {
 

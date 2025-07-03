@@ -29,6 +29,10 @@ public class OrderItem {
     @Column(name = "product_id")
     private Long productId;
 
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
     public OrderItem() { }
 
     public OrderItem(Long id, String imageUrl, BigDecimal unitPrice, int quantity, Long productId, Order order) {
@@ -100,7 +104,7 @@ public class OrderItem {
                 '}';
     }
 
-    private Order order;
+
 }
 
 
