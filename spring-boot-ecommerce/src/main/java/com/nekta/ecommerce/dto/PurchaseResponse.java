@@ -1,8 +1,8 @@
 package com.nekta.ecommerce.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NonNull;
+//import lombok.AllArgsConstructor;
+//import lombok.Data;
+//import lombok.NonNull;
 
 
 public class PurchaseResponse {
